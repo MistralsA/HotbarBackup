@@ -1,0 +1,12 @@
+{
+  "Author": "Mistralsa",
+  "Name": "Hotbar Backup",
+  "Punchline": "Exports your current class hotbar into text. Allows imports too!",
+  "Description": "Exports your current class hotbar into a JSON for backups. Allows imports from the same export on classes you don't have.",
+  "ApplicableVersion": "any",
+  "Tags": [
+    "hotbar",
+    "management",
+    "backup"
+  ]
+}

@@ -1,0 +1,6 @@
+.vs/
+obj/
+bin/
+*.user
+./hotbarBackup/bin/*
+./hotbarBackup/obj/*
