@@ -38,7 +38,6 @@ public sealed class Plugin : IDalamudPlugin
 
         PluginInterface.UiBuilder.Draw += DrawUI;
 
-        // Adds another button that is doing the same but for the main ui of the plugin
         PluginInterface.UiBuilder.OpenMainUi += ToggleMainUI;
 
         PluginInterface.UiBuilder.OpenConfigUi += ToggleConfigUI;
@@ -55,16 +54,15 @@ public sealed class Plugin : IDalamudPlugin
 
     private void OnCommand(string command, string args)
     {
-        // in response to the slash command, just toggle the display status of our main ui
         ToggleMainUI();
     }
 
     public void ExportCurrentClassHotbarToClipboard(bool exportNormalHotbar, bool exportShareHotbar, bool exportJobGauge) =>
         RaptureHotbar.ExportCurrentClassHotbarToClipboard(exportNormalHotbar, exportShareHotbar, exportJobGauge);
+    public void ToggleMainUI() => MainWindow.Toggle();
+    public void ToggleConfigUI() => MainWindow.Nothing(); // No config!
 
     public string ImportHotbar(string str) => RaptureHotbar.ImportHotbar(str);
 
     private void DrawUI() => WindowSystem.Draw();
-    public void ToggleMainUI() => MainWindow.Toggle();
-    public void ToggleConfigUI() => MainWindow.Nothing();
 }

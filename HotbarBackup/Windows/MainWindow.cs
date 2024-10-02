@@ -44,9 +44,9 @@ public class MainWindow : Window, IDisposable
     {
         ImGui.Checkbox("Normal Hotbar", ref exportNormalHotbar);
         ImGui.SameLine();
-        //ImGui.Checkbox("Job Gauge position", ref exportJobGauge);
+        //ImGui.Checkbox("Job Gauge position", ref exportJobGauge); One day...
         ImGui.Checkbox("Shared Hotbar", ref exportSharedHotbar);
-        if (ImGui.Button("Export current Hotbars"))
+        if (ImGui.Button("Export current Hotbars to clipboard"))
         {
             this.plugin.ExportCurrentClassHotbarToClipboard(exportNormalHotbar, exportSharedHotbar, exportJobGauge);
         }
@@ -103,11 +103,11 @@ public class MainWindow : Window, IDisposable
         ImGui.EndGroup();
         if (this.textFlags.importClass == "")
         {
-            ImGui.TextWrapped("Import unsuccessful for class " + this.textFlags.importClass);
+            ImGui.TextWrapped("Import unsuccessful");
         }
         else if (this.textFlags.importClass != null)
         {
-            ImGui.TextWrapped("Import successful for class " + this.textFlags.importClass);
+            ImGui.TextWrapped("Import successful for job " + this.textFlags.importClass);
         }
     }
 }
