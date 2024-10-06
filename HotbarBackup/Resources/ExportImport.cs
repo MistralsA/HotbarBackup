@@ -85,7 +85,13 @@ namespace HotbarBackup.Resources
             {
                 int totalHotbars = raptureHotbarModule->Hotbars.Length + raptureHotbarModule->CrossHotbars.Length;
                 pluginLog.Debug("Attempting to import hotbar to " + curClassStr);
-                RaptureHotbarModule.HotbarSlot slotDump = new RaptureHotbarModule.HotbarSlot();
+                bool isCurrentClass = currentClass == raptureHotbarModule->ActiveHotbarClassJobId;
+                RaptureHotbarModule.HotbarSlot* slotDump = null;
+                if (!isCurrentClass)
+                {
+                    RaptureHotbarModule.HotbarSlot thing = new RaptureHotbarModule.HotbarSlot();
+                    slotDump = &thing;
+                }
                 for (uint liveHotbarId = 0; liveHotbarId < importedHotbar.hotbar.Length; liveHotbarId++)
                 {
                     HotbarSlot[] hotbarMem = importedHotbar.hotbar[liveHotbarId];
@@ -96,9 +102,17 @@ namespace HotbarBackup.Resources
                         HotbarSlot importedSlot = hotbarMem[liveHotbarSlot];
                         if (importedSlot == null) { continue; }
 
+                        if (isCurrentClass)
+                        {
+                            slotDump = raptureHotbarModule->GetSlotById(liveHotbarId, liveHotbarSlot);
+                        }
+
                         pluginLog.Debug("Attempting to slot " + importedSlot.hotbarType + " " + importedSlot.hotbarActionId);
-                        slotDump.Set(importedSlot.hotbarType, importedSlot.hotbarActionId);
-                        raptureHotbarModule->WriteSavedSlot(currentClass, liveHotbarId, liveHotbarSlot, &slotDump, false, clientState.IsPvP);
+                        if (slotDump != null)
+                        {
+                            slotDump->Set(importedSlot.hotbarType, importedSlot.hotbarActionId);
+                        }
+                        raptureHotbarModule->WriteSavedSlot(currentClass, liveHotbarId, liveHotbarSlot, slotDump, false, clientState.IsPvP);
                     }
                 }
             }
