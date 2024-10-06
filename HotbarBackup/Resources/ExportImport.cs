@@ -63,7 +63,7 @@ namespace HotbarBackup.Resources
         public string ImportHotbar(string hotbarJson)
         {
             if (!clientState.IsLoggedIn) { pluginLog.Warning("Not logged in. Don't even try"); return ""; }
-            ImportToMemory importedHotbar;
+            ImportToMemory? importedHotbar;
             try
             {
                 importedHotbar = JsonConvert.DeserializeObject<ImportToMemory>(hotbarJson);
