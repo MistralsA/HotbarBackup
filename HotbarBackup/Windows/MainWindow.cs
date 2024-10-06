@@ -15,14 +15,14 @@ public class MainWindow : Window, IDisposable
     private bool exportSharedHotbar = false;
     private bool exportJobGauge = false;
     private IPluginLog pluginLog;
-    private Configuration textFlags;
+    private Feedback textFlags;
     public string PresetImportString
     {
         get { return importString; }
         set { importString = value; }
     }
 
-    public MainWindow(Plugin plugin, IPluginLog pluginLog, Configuration textFlags):base("Hotbar Export/Import##WhatId", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse)
+    public MainWindow(Plugin plugin, IPluginLog pluginLog, Feedback textFlags):base("Hotbar Export/Import##WhatId", ImGuiWindowFlags.NoScrollbar | ImGuiWindowFlags.NoScrollWithMouse)
     {
         SizeConstraints = new WindowSizeConstraints
         {
@@ -59,11 +59,6 @@ public class MainWindow : Window, IDisposable
     public override void OnClose()
     {
         returnToDefault();
-    }
-
-    public void Nothing()
-    {
-        return;
     }
 
     private void returnToDefault()

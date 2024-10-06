@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace HotbarBackup.Resources
 {
-    public class Configuration
+    public class Feedback
     {
         public string? importClass;
 
-        public Configuration() { }
+        public Feedback() { }
     }
 }

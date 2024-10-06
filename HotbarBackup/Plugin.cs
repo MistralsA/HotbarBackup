@@ -19,13 +19,13 @@ public sealed class Plugin : IDalamudPlugin
     public readonly WindowSystem WindowSystem = new("Hotbar Backup");
     private MainWindow MainWindow { get; init; }
 
-    private Configuration textFlags {  get; init; }
+    private Feedback textFlags {  get; init; }
 
     private ExportImport RaptureHotbar { get; init; }
 
     public Plugin(IDalamudPluginInterface interf, IPluginLog pluginLog, IChatGui chatGui, IClientState clientState)
     {
-        textFlags = new Configuration();
+        textFlags = new Feedback();
         MainWindow = new MainWindow(this, pluginLog, textFlags);
         RaptureHotbar = new ExportImport(this, pluginLog, clientState);
 
@@ -39,8 +39,6 @@ public sealed class Plugin : IDalamudPlugin
         PluginInterface.UiBuilder.Draw += DrawUI;
 
         PluginInterface.UiBuilder.OpenMainUi += ToggleMainUI;
-
-        PluginInterface.UiBuilder.OpenConfigUi += ToggleConfigUI;
     }
 
     public void Dispose()
@@ -60,7 +58,6 @@ public sealed class Plugin : IDalamudPlugin
     public void ExportCurrentClassHotbarToClipboard(bool exportNormalHotbar, bool exportShareHotbar, bool exportJobGauge) =>
         RaptureHotbar.ExportCurrentClassHotbarToClipboard(exportNormalHotbar, exportShareHotbar, exportJobGauge);
     public void ToggleMainUI() => MainWindow.Toggle();
-    public void ToggleConfigUI() => MainWindow.Nothing(); // No config!
 
     public string ImportHotbar(string str) => RaptureHotbar.ImportHotbar(str);
 
