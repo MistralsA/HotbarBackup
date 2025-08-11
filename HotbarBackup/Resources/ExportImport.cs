@@ -3,7 +3,7 @@ using FFXIVClientStructs.FFXIV.Client.System.Framework;
 using FFXIVClientStructs.FFXIV.Client.UI.Misc;
 using System;
 using Newtonsoft.Json;
-using ImGuiNET;
+using Dalamud.Bindings.ImGui;
 using HotbarBackup.Resources.Hotbar;
 
 namespace HotbarBackup.Resources
